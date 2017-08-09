@@ -14,7 +14,6 @@ Day/Dawn/Night
 
 #include "FastLED.h"
 
-#include "config.h"
 #include "logging.h"
 #include "ticker.h"
 #include "pitches.h"
