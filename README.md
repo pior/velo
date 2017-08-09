@@ -5,20 +5,14 @@ Smart rear/side bike light
 
 First install PlatformIO Core: [docs](http://docs.platformio.org/en/latest/installation.html)
 
-```shell
-$ git clone git@github.com:pior/velo.git
-...
+Clone the project:
 
-$ cd velo
+    $ git clone git@github.com:pior/velo.git
 
-velo $ pio run
-[Tue Aug  8 22:25:37 2017] Processing nano (targets: upload; platform: atmelavr; lib_deps: FastLED @ 3.1.4; board: nanoatmega328; framework: arduino)
+Build:
 
-[...]
+    $ pio run
 
-======================================================================================= [SUCCESS] Took 13.55 seconds =======================================================================================
-```
+Upload:
 
-
-
-
+    $ pio run -t upload
