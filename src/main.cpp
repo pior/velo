@@ -14,9 +14,10 @@ Day/Dawn/Night
 
 #include "FastLED.h"
 
+#include "light.h"
 #include "logging.h"
-#include "ticker.h"
 #include "pitches.h"
+#include "ticker.h"
 #include "vibration.h"
 
 #ifdef DEBUG
@@ -29,30 +30,11 @@ Day/Dawn/Night
 #define BUILTIN_LED_ON digitalWrite(LED_BUILTIN, HIGH);
 #define BUILTIN_LED_OFF digitalWrite(LED_BUILTIN, LOW);
 
-#define REAR_LED_COUNT 16
-#define SIDE_LED_COUNT 7
-
-#define REAR_LED_PIN 5
-#define SIDE_LED_PIN 6
-
 #define LIGHT_ANALOG_PIN 0
 #define LIGHT_ENABLE_PIN 7
 
 #define BUZZER_PIN 9
 
-CRGB rear_leds[REAR_LED_COUNT];
-CRGB side_leds[SIDE_LED_COUNT];
-
-
-void init_light() {
-  FastLED.addLeds<WS2812, REAR_LED_PIN, GRB>(rear_leds, REAR_LED_COUNT);
-  FastLED.addLeds<WS2812, SIDE_LED_PIN, GRB>(side_leds, SIDE_LED_COUNT);
-
-  fill_solid(rear_leds, REAR_LED_COUNT, CRGB::Red);
-//  fill_solid(side_leds, SIDE_LED_COUNT, 0xFF4000);
-
-  FastLED.show(0);  // scale = 0 to keep it off
-}
 
 void setup() {
   BUILTIN_LED_SETUP
@@ -68,8 +50,6 @@ void setup() {
 
   BUILTIN_LED_OFF
 }
-
-//---------------------------------------------
 
 //---------------------------------------------
 
@@ -102,5 +82,3 @@ void loop() {
 
   next_tick();
 }
-
-
