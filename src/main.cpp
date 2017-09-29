@@ -13,6 +13,7 @@ Day/Dawn/Night
 #include "Arduino.h"
 
 #include "FastLED.h"
+#include <TaskScheduler.h>
 
 #include "light.h"
 #include "logging.h"
@@ -35,6 +36,16 @@ Day/Dawn/Night
 
 #define BUZZER_PIN 9
 
+Scheduler scheduler;
+
+void testTaskFunction();
+Task test_task(500, TASK_FOREVER, &testTaskFunction, &scheduler, true);
+
+
+void testTaskFunction() {
+  log_value("test", millis())
+}
+
 
 void setup() {
   BUILTIN_LED_SETUP
@@ -42,11 +53,14 @@ void setup() {
 
   DEBUG_INIT
 
-  init_vibration();
-
-  init_light();
-
   SETUP_BEEP
+
+  // scheduler.init();
+  // scheduler.addTask(test_task);
+
+  // init_vibration();
+
+  // init_light();
 
   BUILTIN_LED_OFF
 }
@@ -67,18 +81,19 @@ int read_light() {
 
 
 void loop() {
-  check_activity();
+  // check_activity();
 
-  if(tick_1s()) {
+  // if(tick_1s()) {
 
-    if(is_inactive()) {
-      // GO TO SLEEP
-      FastLED.show(0);
-    } else {
-      FastLED.show(255);
-    }
+  //   if(is_inactive()) {
+  //     // GO TO SLEEP
+  //     FastLED.show(0);
+  //   } else {
+  //     FastLED.show(255);
+  //   }
 
-  }
+  // }
 
-  next_tick();
+  // next_tick();
+  scheduler.execute();
 }

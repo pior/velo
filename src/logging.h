@@ -2,7 +2,7 @@
 #define LOGGING_H
 
 #ifdef DEBUG
-#define DEBUG_INIT Serial.begin(9600);
+#define DEBUG_INIT Serial.begin(9600); Serial.println("Debug logs activated");
 #define log(name) Serial.println(msg);
 #define log_value(name, value) Serial.print(name); Serial.print(": "); Serial.println(value);
 
